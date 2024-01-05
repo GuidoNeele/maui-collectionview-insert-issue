@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage x:Class="CollectionViewSample.MainPage"
+             xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:CollectionViewSample">
+    <ContentPage.BindingContext>
+        <local:MainViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Resources>
+        <Style x:Key="ButtonStyle" TargetType="Button">
+            <Setter Property="Padding" Value="0" />
+            <Setter Property="CornerRadius" Value="0" />
+            <Setter Property="HeightRequest" Value="30" />
+        </Style>
+    </ContentPage.Resources>
+
+    <Grid RowDefinitions="Auto, *">
+
+        <VerticalStackLayout Spacing="3">
+            <Button Command="{Binding AddItemCommand}"
+                    Style="{StaticResource ButtonStyle}"
+                    Text="Add item to end" />
+            <Button Command="{Binding InsertItemCommand}"
+                    Style="{StaticResource ButtonStyle}"
+                    Text="Insert at 0" />
+            <Button Command="{Binding InsertBeforLastCommand}"
+                    Style="{StaticResource ButtonStyle}"
+                    Text="Insert at n-1" />
+            <Button Command="{Binding RemoveFirstItemCommand}"
+                    Style="{StaticResource ButtonStyle}"
+                    Text="Remove position 0" />
+            <Button Command="{Binding RemoveItemBeforeLastCommand}"
+                    Style="{StaticResource ButtonStyle}"
+                    Text="Remove position n-1" />
+            <Button Command="{Binding WorkaroundCommand}"
+                    Style="{StaticResource ButtonStyle}"
+                    Text="Insert at 0 workaround" />
+        </VerticalStackLayout>
+
+        <CollectionView Grid.Row="1" ItemsSource="{Binding MyItems}">
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout ItemSpacing="4" Orientation="Vertical" />
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="local:MyItem">
+                    <VerticalStackLayout Padding="8"
+                                         BackgroundColor="DarkRed"
+                                         Spacing="4">
+                        <Label Text="{Binding Name}" />
+                        <Label Text="{Binding Description}" />
+                    </VerticalStackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+
+</ContentPage>
