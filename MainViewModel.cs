@@ -33,7 +33,7 @@ public partial class MainViewModel : ObservableObject
     {
         if (MyItems.Count > 1)
         {
-            MyItems.Insert(MyItems.Count - 2, MyItem.Create());
+            MyItems.Insert(MyItems.Count - 1, MyItem.Create());
         }
     }
 
@@ -52,18 +52,6 @@ public partial class MainViewModel : ObservableObject
         if (MyItems.Count > 0)
         {
             MyItems.RemoveAt(0);
-        }
-    }
-
-    [RelayCommand]
-    void Workaround()
-    {
-        if (MyItems.Count > 1)
-        {
-            MyItems.Insert(1, MyItem.Create());
-            var element0 = MyItems.ElementAt(0);
-            MyItems.RemoveAt(0);
-            MyItems.Insert(1, element0);
         }
     }
 }

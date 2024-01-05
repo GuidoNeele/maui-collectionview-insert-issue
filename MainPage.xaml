@@ -33,9 +33,6 @@
             <Button Command="{Binding RemoveItemBeforeLastCommand}"
                     Style="{StaticResource ButtonStyle}"
                     Text="Remove position n-1" />
-            <Button Command="{Binding WorkaroundCommand}"
-                    Style="{StaticResource ButtonStyle}"
-                    Text="Insert at 0 workaround" />
         </VerticalStackLayout>
 
         <CollectionView Grid.Row="1" ItemsSource="{Binding MyItems}">
